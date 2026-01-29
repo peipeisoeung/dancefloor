@@ -68,7 +68,7 @@ const DanceFloor = () => {
       <div
         className="disco-ball-wrapper"
         style={{
-          filter: `drop-shadow(0 0 30px ${frogColor}) drop-shadow(0 0 60px ${frogColor})`,
+          filter: `drop-shadow(0 0 20px ${frogColor}) drop-shadow(0 0 40px ${frogColor}) drop-shadow(0 0 60px ${frogColor}) drop-shadow(0 0 100px ${frogColor})`,
         }}
       >
         <img src={discoBall} alt="Disco Ball" className="disco-ball" />
