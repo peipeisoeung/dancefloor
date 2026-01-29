@@ -1,0 +1,268 @@
+.dance-floor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: #20116e;
+  position: relative;
+  overflow: hidden;
+}
+
+.disco-ball-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  transition: filter 0.5s ease;
+}
+
+.disco-ball {
+  width: 220px;
+  height: auto;
+  display: block;
+}
+
+.title {
+  display: none;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.indicator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.color-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.color-circle:hover {
+  transform: scale(1.05);
+}
+
+.color-circle.pulse {
+  animation: pulse 0.3s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.indicator-text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.grid-wrapper {
+  position: relative;
+  margin: 0;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dance-floor-grid {
+  display: grid;
+  gap: 4px;
+  padding: 0;
+  background: transparent;
+  transform: rotateX(60deg) translateZ(-50px) scale(1.4);
+  transform-style: preserve-3d;
+  width: 95vw;
+  max-width: 1400px;
+  transform-origin: center center;
+}
+
+.frog-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(100px);
+  pointer-events: none;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+  transform-style: preserve-3d;
+}
+
+.frog-container.pulse {
+  animation: frogPulse 0.3s ease-out;
+}
+
+@keyframes frogPulse {
+  0% {
+    transform: translate(-50%, -50%) translateZ(100px) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translateZ(100px) scale(1.15);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translateZ(100px) scale(1);
+  }
+}
+
+.frog-svg {
+  transition: all 0.5s ease;
+  animation: frogBounce 2s ease-in-out infinite;
+}
+
+@keyframes frogBounce {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.tile {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.tile::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.tile:hover {
+  cursor: pointer;
+}
+
+.tile:active::before {
+  width: 100%;
+  height: 100%;
+}
+
+.tile-animate {
+  animation: colorChange 0.3s ease-in-out;
+}
+
+@keyframes colorChange {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+    filter: brightness(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.instructions {
+  display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .disco-ball {
+    width: 100px;
+  }
+
+  .tile {
+    width: 45px;
+    height: 45px;
+  }
+
+  .frog-container svg {
+    width: 100px;
+    height: 200px;
+  }
+
+  .dance-floor-grid {
+    gap: 6px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+    margin-top: 100px;
+  }
+
+  .disco-ball {
+    width: 80px;
+  }
+
+  .tile {
+    width: 35px;
+    height: 35px;
+  }
+
+  .frog-container svg {
+    width: 80px;
+    height: 160px;
+  }
+
+  .instructions p {
+    font-size: 0.9rem;
+  }
+}
